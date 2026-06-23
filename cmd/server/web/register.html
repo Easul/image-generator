@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>注册 - AI 图片工作台</title>
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body class="auth-page" data-page="register">
+  <main class="auth-card card">
+    <a class="brand centered" href="/">
+      <span class="brand-mark">AI</span>
+      <span>AI 图片工作台</span>
+    </a>
+    <h1>创建账号</h1>
+    <p class="muted">第一个注册用户会自动成为管理员。</p>
+    <form id="registerForm" class="stack-form">
+      <label>
+        <span>用户名</span>
+        <input name="username" autocomplete="username" required minlength="3">
+      </label>
+      <label>
+        <span>密码</span>
+        <input name="password" type="password" autocomplete="new-password" required minlength="6">
+      </label>
+      <button class="primary-button" type="submit">注册并进入</button>
+    </form>
+    <p class="auth-switch">已有账号？<a href="/login.html">返回登录</a></p>
+    <p class="status-line" id="authStatus"></p>
+  </main>
+  <script src="/assets/js/auth.js"></script>
+</body>
+</html>

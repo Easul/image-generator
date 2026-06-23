@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>管理后台 - AI 图片工作台</title>
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body data-page="admin">
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="/"><span class="brand-mark">AI</span><span>AI 图片工作台</span></a>
+      <nav class="nav-list">
+        <a class="nav-item" href="/">工作台</a>
+        <a class="nav-item" href="/gallery.html">画廊</a>
+        <a class="nav-item active" href="/admin.html">设置</a>
+        <button type="button" class="nav-item nav-button" id="logoutBtn">退出</button>
+      </nav>
+      <div class="sidebar-card">
+        <p class="muted">当前用户</p>
+        <strong id="currentUser">加载中...</strong>
+        <span id="adminBadge" class="badge hidden">管理员</span>
+        <details class="user-menu">
+          <summary class="user-menu-trigger">更多</summary>
+          <div class="user-menu-panel">
+            <a class="user-menu-link" href="/password.html">账户安全 · 修改密码</a>
+          </div>
+        </details>
+      </div>
+    </aside>
+
+    <main class="main-panel admin-layout">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Admin</p>
+          <h1>系统设置</h1>
+        </div>
+      </header>
+
+      <section class="settings-grid">
+        <form id="settingsForm" class="card stack-form">
+          <h2>系统设置</h2>
+          <label><span>网站名</span><input name="site_name"></label>
+          <label><span>Logo 文本</span><input name="site_icon"></label>
+          <label class="switch-row"><input name="allow_register" type="checkbox"><span>允许新用户注册</span></label>
+          <label><span>Base URL</span><input name="base_url" placeholder="http://127.0.0.1:8000"></label>
+          <label><span>API Key</span><input name="api_key" type="password" autocomplete="off"></label>
+          <div class="button-row">
+            <button class="primary-button" type="submit">保存设置</button>
+            <button class="secondary-button" id="testApi" type="button">测试连接</button>
+          </div>
+        </form>
+
+        <form id="modelsForm" class="card stack-form">
+          <h2>模型管理</h2>
+          <label><span>可用模型（每行一个）</span><textarea name="models" rows="8"></textarea></label>
+          <button class="primary-button" type="submit">保存模型</button>
+        </form>
+      </section>
+
+      <section class="card api-keys-card">
+        <div class="section-heading">
+          <div>
+            <h2>API 密钥管理</h2>
+            <p class="muted">生成 API 密钥用于接口调用，最多创建 5 个。</p>
+          </div>
+          <button class="primary-button" id="createApiKeyBtn">创建密钥</button>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>密钥</th>
+                <th>备注</th>
+                <th>最后使用</th>
+                <th>创建时间</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody id="apiKeysTable"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="card users-card">
+        <div class="section-heading">
+          <div>
+            <h2>用户管理</h2>
+            <p class="muted">重置密码按钮在每个非当前账户的操作区，生成后会弹出随机新密码。</p>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>用户名</th>
+                <th>注册时间</th>
+                <th>管理员</th>
+                <th>状态</th>
+                <th>今日调用</th>
+                <th>总调用</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody id="usersTable"></tbody>
+          </table>
+        </div>
+      </section>
+      <p class="status-line" id="adminStatus"></p>
+    </main>
+  </div>
+  <script src="/assets/js/admin.js"></script>
+</body>
+</html>

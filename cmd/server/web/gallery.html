@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>画廊 - AI 图片工作台</title>
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body data-page="gallery">
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="/"><span class="brand-mark">AI</span><span>AI 图片工作台</span></a>
+      <nav class="nav-list">
+        <a class="nav-item" href="/">工作台</a>
+        <a class="nav-item active" href="/gallery.html">画廊</a>
+        <a class="nav-item admin-link hidden" href="/admin.html">设置</a>
+        <button type="button" class="nav-item nav-button" id="logoutBtn">退出</button>
+      </nav>
+      <div class="sidebar-card">
+        <p class="muted">当前用户</p>
+        <strong id="currentUser">加载中...</strong>
+        <span id="adminBadge" class="badge hidden">管理员</span>
+        <details class="user-menu">
+          <summary class="user-menu-trigger">更多</summary>
+          <div class="user-menu-panel">
+            <a class="user-menu-link" href="/password.html">账户安全 · 修改密码</a>
+          </div>
+        </details>
+      </div>
+    </aside>
+    <main class="main-panel">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Gallery</p>
+          <h1>你的生成历史</h1>
+        </div>
+        <div class="topbar-actions">
+          <button type="button" class="secondary-button" id="refreshGallery">刷新</button>
+        </div>
+      </header>
+
+      <div id="galleryToolbar" class="gallery-toolbar">
+        <div class="toolbar-info">
+          <span id="selectedCount">已选择 0 项</span>
+        </div>
+        <div class="toolbar-buttons">
+          <button type="button" class="ghost-link" id="selectAllBtn">全选</button>
+          <button type="button" class="ghost-link" id="cancelSelectionBtn">取消</button>
+          <button type="button" class="primary-button danger" id="batchDeleteBtn">批量删除</button>
+        </div>
+      </div>
+
+      <section id="galleryGrid" class="masonry"></section>
+      <p class="status-line" id="galleryStatus"></p>
+    </main>
+  </div>
+
+  <dialog id="imageModal" class="image-dialog">
+    <button type="button" class="dialog-close" id="closeModal" aria-label="关闭">×</button>
+    <img id="modalImage" alt="图片详情">
+    <div class="dialog-content">
+      <p class="eyebrow" id="modalTask"></p>
+      <h2 id="modalPrompt"></h2>
+      <dl class="detail-list">
+        <div><dt>模型</dt><dd id="modalModel"></dd></div>
+        <div><dt>比例</dt><dd id="modalRatio"></dd></div>
+        <div><dt>分辨率</dt><dd id="modalResolution"></dd></div>
+        <div><dt>时间</dt><dd id="modalCreated"></dd></div>
+      </dl>
+      <div class="dialog-footer">
+        <button type="button" class="primary-button" id="shareImage">创建分享链接</button>
+        <button type="button" class="secondary-button danger" id="deleteImage">删除图片</button>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="/assets/js/gallery.js"></script>
+</body>
+</html>

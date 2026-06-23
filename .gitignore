@@ -1,0 +1,12 @@
+
+/.omo
+/dist
+/temp
+/data
+/uploads
+/web
+/config.yaml
+/server.pid
+/.playwright-mcp
+/bin
+/.claude

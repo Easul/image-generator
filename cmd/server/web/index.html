@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI 图片工作台</title>
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body data-page="workbench">
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="/">
+        <span class="brand-mark" id="siteIcon">AI</span>
+        <span id="siteName">AI 图片工作台</span>
+      </a>
+      <nav class="nav-list">
+        <a class="nav-item active" href="/">工作台</a>
+        <a class="nav-item" href="/gallery.html">画廊</a>
+        <a class="nav-item admin-link hidden" href="/admin.html">设置</a>
+        <button type="button" class="nav-item nav-button" id="logoutBtn">退出</button>
+      </nav>
+      <div class="sidebar-card">
+        <p class="muted">当前用户</p>
+        <strong id="currentUser">加载中...</strong>
+        <span id="adminBadge" class="badge hidden">管理员</span>
+        <details class="user-menu">
+          <summary class="user-menu-trigger">更多</summary>
+          <div class="user-menu-panel">
+            <a class="user-menu-link" href="/password.html">账户安全 · 修改密码</a>
+          </div>
+        </details>
+      </div>
+    </aside>
+
+    <main class="main-panel">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Image Workspace</p>
+          <h1>像对话一样创作图片</h1>
+        </div>
+        <a class="ghost-link" href="/gallery.html">查看画廊</a>
+      </header>
+
+      <section class="workspace-grid">
+        <form id="imageForm" class="composer card">
+          <div class="mode-tabs" role="tablist" aria-label="生成模式">
+            <button type="button" class="mode-tab active" data-mode="generate">文生图</button>
+            <button type="button" class="mode-tab" data-mode="edit">图生图</button>
+            <button type="button" class="mode-tab" data-mode="remove-bg">去背景</button>
+          </div>
+
+          <label class="field-label" for="promptInput">提示词</label>
+          <textarea id="promptInput" name="prompt" rows="7" placeholder="描述你想生成的画面、风格、光线、构图..." required></textarea>
+
+          <div class="upload-panel hidden" id="uploadPanel">
+            <label class="field-label" for="sourceImage">源图片</label>
+            <input id="sourceImage" type="file" accept="image/png,image/jpeg,image/webp">
+            <p class="muted">支持 jpg、png、webp，最大 20MB。</p>
+          </div>
+
+          <div class="form-grid">
+            <label>
+              <span>模型</span>
+              <select id="modelSelect" name="model"></select>
+            </label>
+            <label>
+              <span>尺寸</span>
+              <select id="sizeSelect" name="resolution"></select>
+            </label>
+            <label>
+              <span>比例</span>
+              <select id="ratioSelect" name="ratio">
+                <option value="1:1">1:1</option>
+                <option value="2:3">2:3</option>
+                <option value="3:2">3:2</option>
+                <option value="3:4">3:4</option>
+                <option value="4:3">4:3</option>
+                <option value="9:16">9:16</option>
+                <option value="16:9">16:9</option>
+              </select>
+            </label>
+          </div>
+
+          <button class="primary-button" type="submit" id="generateBtn">生成图片</button>
+          <p class="status-line" id="statusLine"></p>
+        </form>
+
+        <section class="result-panel card" aria-live="polite">
+          <div class="empty-state result-empty-state" id="emptyState">
+            <div class="orb"></div>
+            <h2>等待第一张作品</h2>
+            <p>选择模式并输入提示词，生成结果会显示在这里。</p>
+          </div>
+          <div class="result-card hidden" id="resultCard">
+            <div class="result-image-wrapper">
+              <img id="resultImage" alt="生成结果">
+            </div>
+            <div class="result-meta">
+              <div>
+                <p class="muted">Prompt</p>
+                <strong id="resultPrompt"></strong>
+              </div>
+              <button class="secondary-button" id="shareResult" type="button">分享</button>
+            </div>
+          </div>
+        </section>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/app.js"></script>
+</body>
+</html>

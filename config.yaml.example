@@ -1,0 +1,32 @@
+server:
+    address: :8080
+    session_secret: change-me-to-a-long-random-secret
+    session_name: image_workbench_session
+    secure_cookies: false
+database:
+    path: data/app.db
+storage:
+    original_dir: uploads/original
+    generated_dir: uploads/generated
+    max_upload_mb: 20
+openai:
+    base_url: ""
+    api_key: ""
+defaults:
+    site_name: AI 图片工作台
+    site_icon: AI
+    allow_register: true
+    available_models:
+        - gpt-image-2
+        - gpt-image-1
+        - gemini-3-pro-image-preview
+        - flux-dev
+        - sdxl
+    available_sizes:
+        - 1024x1024
+        - 1024x1536
+        - 1536x1024
+        - 1024x1365
+        - 1365x1024
+        - 1088x1920
+        - 1920x1088
